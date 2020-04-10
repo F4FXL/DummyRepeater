@@ -463,7 +463,8 @@ void CDummyRepeaterFrame::onPreferences(wxCommandEvent&)
 
 	message         = dialog1.getMessage();
 
-	bleepType           = dialog1.getBleepType();
+	bleepType       = dialog1.getBleepType();
+	bleepMode		= dialog1.getBleepMode();
 	bleepVolume		= dialog1.getBleepVolume();
 
 	::wxGetApp().setCallsign(callsign1, callsign2);
