@@ -20,7 +20,7 @@
 
 #include <cmath>
 
-CBleeper::CBleeper(unsigned int sampleRate, unsigned int bleepType, float amplitude) :
+CBleeper::CBleeper(unsigned int sampleRate, BLEEP_TYPE bleepType, float amplitude) :
 m_bleepType(bleepType),
 m_audio(NULL),
 m_length(0U),
@@ -30,7 +30,7 @@ m_position(0U)
 	wxASSERT(sampleRate > 0U);
 	wxASSERT(amplitude > 0.0F);
 
-	if(bleepType == 2) {
+	if(bleepType == BLT_QUINDAR) {
 		m_length = sampleRate / QUINDAR_BLEEP_FREQ;
 		m_total = (sampleRate * QUINDAR_BLEEP_LENGTH) / 1000U;
 

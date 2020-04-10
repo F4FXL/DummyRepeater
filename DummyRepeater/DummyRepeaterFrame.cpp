@@ -426,12 +426,14 @@ void CDummyRepeaterFrame::onPreferences(wxCommandEvent&)
 	wxString message;
 	::wxGetApp().getMessage(message);
 
-	unsigned int bleep, bleepVolume;
-	::wxGetApp().getBleep(bleep, bleepVolume);
+	BLEEP_TYPE bleepType;
+	BLEEP_MODE bleepMode;
+	unsigned int bleepVolume;
+	::wxGetApp().getBleep(bleepType, bleepMode, bleepVolume);
 
 	CDummyRepeaterPreferences dialog1(this, -1, callsign1, callsign2, readDevice, writeDevice, dongleType, dongleDevice,
 		dongleSpeed, dongleAddress, donglePort, gatewayAddress, gatewayPort, localAddress, localPort, type, config,
-		pttInvert, squelchInvert, timeout, message, bleep, bleepVolume);
+		pttInvert, squelchInvert, timeout, message, bleepType, bleepMode, bleepVolume);
 	if (dialog1.ShowModal() != wxID_OK)
 		return;
 
@@ -461,7 +463,7 @@ void CDummyRepeaterFrame::onPreferences(wxCommandEvent&)
 
 	message         = dialog1.getMessage();
 
-	bleep           = dialog1.getBleep();
+	bleepType           = dialog1.getBleepType();
 	bleepVolume		= dialog1.getBleepVolume();
 
 	::wxGetApp().setCallsign(callsign1, callsign2);
@@ -471,7 +473,7 @@ void CDummyRepeaterFrame::onPreferences(wxCommandEvent&)
 	::wxGetApp().setController(type, config, pttInvert, squelchInvert);
 	::wxGetApp().setTimeout(timeout);
 	::wxGetApp().setMessage(message);
-	::wxGetApp().setBleep(bleep, bleepVolume);
+	::wxGetApp().setBleep(bleepType, bleepMode, bleepVolume);
 
 	wxMessageDialog dialog2(this, _("The changes made will not take effect\nuntil the application is restarted"), _("Dummy Repeater Information"), wxICON_INFORMATION);
 	dialog2.ShowModal();

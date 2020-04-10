@@ -49,16 +49,16 @@ void* CDV3000Thread::Entry()
 	while (!m_killed) {
 		if (m_mode != m_wantMode) {
 			if (m_mode == A3_DECODE && m_packets == 0U && m_decodeData.isEmpty()) {
-				if (m_bleep)
+				if ((m_bleepMode & BLM_DSTAR) != 0)
 					sendBleep();
 
 				reset();
 				m_mode = m_wantMode;
 			} else if (m_mode == A3_ENCODE && m_packets == 0U && m_encodeAudio.isEmpty()) {
-				// if(m_bleep){
-				// 	m_mode = A3_DECODE;
-				// 	continue;
-				// }
+				if((m_bleepMode & BLM_RADIO) != 0){ //This sends a bleep on radio receive end
+					m_mode = A3_DECODE;
+					continue;
+				}
 				reset();
 				m_mode = m_wantMode;
 			} else if (m_mode == A3_IDLE) {

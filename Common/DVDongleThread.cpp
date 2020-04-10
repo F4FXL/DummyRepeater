@@ -43,8 +43,10 @@ void* CDVDongleThread::Entry()
 
 	while (!m_killed) {
 		if (m_mode != m_wantMode) {
-			if (m_mode == DM_DECODE && m_bleep)
+			if (m_mode == DM_DECODE && m_bleepType)
 				sendBleep();
+
+			//Todo 2020-04-10 F4FXL Implement radio bleep once I can get my hands on a DV Dongle
 
 			// Reset the FIR filter shift register
 			reset();

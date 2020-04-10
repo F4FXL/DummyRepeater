@@ -23,6 +23,7 @@
 #include "DecodeCallback.h"
 #include "RingBuffer.h"
 #include "FIRFilter.h"
+#include "DStarDefines.h"
 
 #include <wx/wx.h>
 
@@ -46,7 +47,7 @@ public:
 	virtual unsigned int writeEncode(const wxFloat32* audio, unsigned int length);
 	virtual unsigned int writeDecode(const unsigned char* ambe, unsigned int length);
 
-	virtual void setBleep(unsigned int bleep, unsigned int volume);
+	virtual void setBleep(BLEEP_TYPE bleepType, BLEEP_MODE bleepMode, unsigned int volume);
 	virtual void kill();
 
 protected:
@@ -54,7 +55,8 @@ protected:
 	IDecodeCallback*           m_decodeCallback;
 	CRingBuffer<wxFloat32>     m_encodeAudio;
 	CRingBuffer<unsigned char> m_decodeData;
-	unsigned int               m_bleep;
+	BLEEP_TYPE             	   m_bleepType;
+	BLEEP_MODE				   m_bleepMode;
 	unsigned int			   m_bleepVolume;
 
 	bool                       m_killed;

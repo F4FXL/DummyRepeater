@@ -230,4 +230,18 @@ enum DVMEGA_VARIANT {
 	DVMV_RADIO
 };
 
+enum BLEEP_TYPE 
+{
+	BLT_IC91,
+	BLT_QUINDAR,
+};
+
+enum BLEEP_MODE
+{
+	BLM_OFF = 0,
+	BLM_DSTAR = 1,
+	BLM_RADIO = 2,
+	BLM_DSTAR_RADIO = BLM_DSTAR | BLM_RADIO
+};
+
 #endif

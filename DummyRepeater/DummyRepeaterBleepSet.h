@@ -19,19 +19,22 @@
 #ifndef	DummyRepeaterBleepSet_H
 #define	DummyRepeaterBleepSet_H
 
+#include "Bleeper.h"
 #include <wx/wx.h>
 
 class CDummyRepeaterBleepSet : public wxPanel {
 public:
-	CDummyRepeaterBleepSet(wxWindow* parent, int id, const wxString& title, unsigned int bleep, unsigned int volume);
+	CDummyRepeaterBleepSet(wxWindow* parent, int id, const wxString& title, BLEEP_TYPE bleepType, BLEEP_MODE bleepMode, unsigned int volume);
 	virtual ~CDummyRepeaterBleepSet();
 
-	virtual unsigned int getBleep() const;
+	virtual BLEEP_MODE getBleepMode() const;
+	virtual BLEEP_TYPE getBleepType() const;
 	virtual unsigned int getBleepVolume() const;
 
 private:
 	wxString    m_title;
-	wxChoice*   m_bleep;
+	wxChoice*	m_bleepMode;
+	wxChoice*   m_bleepType;
 	wxSlider*   m_volume;
 };
 

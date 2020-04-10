@@ -19,6 +19,7 @@
 #ifndef	Bleeper_H
 #define	Bleeper_H
 
+#include "DStarDefines.h"
 #include <wx/wx.h>
 
 const unsigned int  DSTAR_BLEEP_FREQ   = 2000U;
@@ -32,7 +33,7 @@ const float         QUINDAR_BLEEP_AMPL   = 0.1F;
 
 class CBleeper {
 public:
-	CBleeper(unsigned int sampleRate, unsigned int bleepType, float amplitude);
+	CBleeper(unsigned int sampleRate, BLEEP_TYPE bleepType, float amplitude);
 	~CBleeper();
 
 	unsigned int getAudio(wxFloat32* audio, unsigned int length);
